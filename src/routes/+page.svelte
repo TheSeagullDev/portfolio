@@ -22,7 +22,7 @@
 		class="md:w-3/4 rounded-2xl bg-cyan-950/40 p-4 xl:p-16 text-xl text-cyan-50 backdrop-blur-xl xl:text-3xl"
 	>
 		<h1 class="mb-2 text-xl xl:text-3xl">Here's some things I've made...</h1>
-		<div class="flex flex-col gap-4 md:flex-row items-center">
+		<div class="flex flex-col gap-4 md:flex-row md:items-center">
 			<Card
 				img={hackpad}
 				title="QLab Macropad"
