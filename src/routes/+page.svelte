@@ -11,7 +11,7 @@
 	class="flex min-h-screen flex-col items-center justify-center gap-8 bg-center p-4"
 >
 	<div
-		class="card rounded-2xl border card-hover border-surface-900-100 preset-filled-primary-500 w-1/2 p-4 text-center transition-all hover:scale-105 xl:p-16"
+		class="card rounded-2xl border card-hover border-surface-900-100 preset-filled-primary-500 md:w-1/2 p-4 text-center transition-all hover:scale-105 xl:p-16"
 	>
 		<h1 class="h1">Hi there! 👋</h1>
 		<h2 class="h2">
