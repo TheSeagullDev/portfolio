@@ -32,7 +32,7 @@
 			<Card
 				img={football}
 				title="College Football Picker"
-				text="A full-stack app made in with flask and SQLite to run a family college football tournament. Excel spreadsheets no more!"
+				text="A full-stack app made with Flask and SQLite to run a family college football tournament. Excel spreadsheets no more!"
 				link="https://github.com/TheSeagullDev/college-football-2"
 			></Card>
 			<Card
