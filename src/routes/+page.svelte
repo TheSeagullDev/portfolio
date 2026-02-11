@@ -4,24 +4,24 @@
 	import football from '$lib/assets/football.png';
 	import bingo from '$lib/assets/binary.png';
 	import Card from './components/card.svelte';
+	import { GithubIcon, LinkedinIcon } from '@lucide/svelte';
 </script>
 
 <div
-	style="background-image: url({bg})"
-	class="flex min-h-screen flex-col items-center justify-center gap-8 bg-cover bg-center p-4"
+	class="flex min-h-screen flex-col items-center justify-center gap-8 bg-center p-4"
 >
 	<div
-		class="w-1/2 rounded-2xl bg-cyan-950/40 p-4 text-center backdrop-blur-xl transition-all hover:scale-110 xl:p-16"
+		class="card rounded-2xl border card-hover border-surface-900-100 preset-filled-primary-500 w-1/2 p-4 text-center transition-all hover:scale-105 xl:p-16"
 	>
-		<h1 class="text-2xl text-cyan-50 xl:text-5xl">Hi there! 👋</h1>
-		<h2 class="text-xl text-cyan-50 xl:text-2xl">
-			I'm Noah Siegel, a High Schooler passionate about all things tech.
+		<h1 class="h1">Hi there! 👋</h1>
+		<h2 class="h2">
+			I'm Noah Siegel, a high schooler passionate about all things tech.
 		</h2>
 	</div>
 	<div
-		class="md:w-3/4 rounded-2xl bg-cyan-950/40 p-4 xl:p-16 text-xl text-cyan-50 backdrop-blur-xl xl:text-3xl"
+		class="md:w-3/4 p-4 xl:p-16"
 	>
-		<h1 class="mb-2 text-xl xl:text-3xl">Here's some things I've made...</h1>
+		<h3 class="h3 mb-2 text-xl xl:text-3xl">Here's some things I've made...</h3>
 		<div class="flex flex-col gap-4 md:flex-row items-center md:items-stretch">
 			<Card
 				img={hackpad}
@@ -42,5 +42,9 @@
 				link="https://github.com/TheSeagullDev/binary-bingo"
 			></Card>
 		</div>
+	</div>
+	<div class="card flex divide-x divide-surface-200-800">
+		<a href="https://www.linkedin.com/in/noah-siegel-29260737b" class="p-2"><LinkedinIcon /></a>
+		<a href="https://github.com/TheSeagullDev" class="p-2"><GithubIcon /></a>
 	</div>
 </div>

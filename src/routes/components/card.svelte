@@ -1,11 +1,20 @@
 <script>
-    let { img, title, text, link } = $props();
+	let { img, title, text, link } = $props();
 </script>
 
-<a class="flex flex-col items-center md:w-2/3 bg-cyan-200/10 rounded-2xl shadow-md backdrop-blur-2xl p-4 gap-2" href={link}>
-	<h2 class="text-md xl:text-2xl">{title}</h2>
-	<img src={img} alt="" class="w-32 xl:w-64 rounded-2xl object-fill" />
-	<p class="text-lg">
-		{text}
-	</p>
+<a
+	class="card card-hover preset-filled-surface-100-900 border border-surface-200-800 divide-surface-200-800 divide-y overflow-hidden md:w-2/3"
+	href={link}
+>
+	<header class="h4">
+		<img src={img} alt="" class="w-full" />
+	</header>
+	<main>
+		<h4 class="h4 p-4">{title}</h4>
+	</main>
+	<footer>
+		<p class="py-2 px-4">
+			{text}
+		</p>
+	</footer>
 </a>
