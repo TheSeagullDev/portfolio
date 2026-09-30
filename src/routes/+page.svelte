@@ -10,6 +10,7 @@
 		contact: Contact
 	};
 
+	const active = false;
 	let skipBoot = false;
 
 	function formatDate(date) {
@@ -84,15 +85,17 @@
 		lines = [];
 	}
 
-	const loadingReasons = [
-		'Loading portfolio',
-		'Indexing projects',
-		'Parsing metadata',
-		'Resolving dependencies',
-		'Building project tree',
-		'Initializing components',
-		'Mounting workspace'
-	];
+	const loadingReasons = active
+		? [
+				'Loading portfolio',
+				'Indexing projects',
+				'Parsing metadata',
+				'Resolving dependencies',
+				'Building project tree',
+				'Initializing components',
+				'Mounting workspace'
+			]
+		: ['Loading portfolio', 'Checking workspace', 'Mounting terminal'];
 
 	let booted = $state(false);
 	async function boot() {
@@ -110,53 +113,80 @@
 	}
 </script>
 
-<div class=" relative min-h-screen overflow-hidden bg-black font-vt323 text-white" onclick={focusInput}>
+<div
+	class="relative min-h-screen overflow-hidden bg-black font-vt323 text-white"
+	role="textbox"
+	aria-multiline="true"
+	aria-label="Terminal"
+	tabindex="-1"
+	onclick={focusInput}
+	onkeydown={(e) => {
+		if (e.key === 'Tab') {
+			focusInput();
+		}
+	}}
+>
 	<div class="p-4 text-xl">
 		{#each lines as line}
 			<p class="-my-2">{line}</p>
 		{/each}
 		{#if booted}
 			<p>Last login: {formatDate(new Date())} on ttys000</p>
-			<p>noahsiegel@portfolio ~ % whoami</p>
-			<p class="text-blue-400">
-				Hello there! I'm Noah Siegel, a CS student studying at <span class="text-yellow-500"
-					>Georgia Tech</span
-				>.
-			</p>
-			<p class="text-blue-400">
-				Most of my projects are built in SvelteKit, but I'm also interested in hardware, PCB design,
-				and learning about new frameworks and technologies.
-			</p>
-			<p class="text-blue-400">
-				To learn more about who I am, type <span class="text-red-400">about</span>
-			</p>
-			<p class="text-blue-400">
-				To learn more about what I've made, type <span class="text-green-400">projects</span>
-			</p>
-			<p class="text-blue-400">
-				To learn more about how to contact me, type <span class="text-purple-400">contact</span>
-			</p>
-			<p class="text-blue-200">Thanks for visiting!</p>
-			{#each history as item}
-				<p>noahsiegel@portfolio ~ % {item.command}</p>
+			{#if active}
+				<p>noahsiegel@portfolio ~ % whoami</p>
+				<p class="text-blue-400">
+					Hello there! I'm Noah Siegel, a CS student studying at <span class="text-yellow-500"
+						>Georgia Tech</span
+					>.
+				</p>
+				<p class="text-blue-400">
+					Most of my projects are built in SvelteKit, but I'm also interested in hardware, PCB
+					design, and learning about new frameworks and technologies.
+				</p>
+				<p class="text-blue-400">
+					To learn more about who I am, type <span class="text-red-400">about</span>
+				</p>
+				<p class="text-blue-400">
+					To learn more about what I've made, type <span class="text-green-400">projects</span>
+				</p>
+				<p class="text-blue-400">
+					To learn more about how to contact me, type <span class="text-purple-400">contact</span>
+				</p>
+				<p class="text-blue-200">Thanks for visiting!</p>
+				{#each history as item}
+					<p>noahsiegel@portfolio ~ % {item.command}</p>
 
-				{#if item.component}
-					<item.component />
-				{:else}
-					<p>command not found: {item.command}</p>
-				{/if}
-			{/each}
-			<p>
-				noahsiegel@portfolio ~ % {command}<span class="blink text-sm">█</span>
-			</p>
+					{#if item.component}
+						<item.component />
+					{:else}
+						<p>command not found: {item.command}</p>
+					{/if}
+				{/each}
+				<p>
+					noahsiegel@portfolio ~ % {command}<span class="blink text-sm">█</span>
+				</p>
+			{:else}
+				<p>noahsiegel@portfolio ~ % cat status</p>
+				<p class="text-yellow-500">coming soon</p>
+				<p class="text-blue-400">Check back later for the full portfolio.</p>
+				<p>
+					<a class="text-blue-200" href="https://linkedin.com/in/noahjsiegel2">LinkedIn</a> |
+					<a class="text-blue-200" href="https://github.com/theseagulldev">GitHub</a>
+					| <a class="text-blue-200" href="/resume.pdf">Resume</a> | 
+					<a class="text-blue-200" href="mailto:noah@noahsiegel.dev">Contact</a>
+				</p>
+				<p>noahsiegel@portfolio ~ % <span class="blink text-sm">█</span></p>
+			{/if}
 		{/if}
-		<input
-			bind:this={input}
-			bind:value={command}
-			onkeydown={handleKeydown}
-			class="pointer-events-none absolute opacity-0"
-			autofocus
-		/>
+		{#if active}
+			<input
+				bind:this={input}
+				bind:value={command}
+				onkeydown={handleKeydown}
+				class="pointer-events-none absolute opacity-0"
+				autofocus
+			/>
+		{/if}
 	</div>
 	<div
 		class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.15)_50%)] bg-[length:100%_4px]"
